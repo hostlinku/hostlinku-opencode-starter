@@ -1,8 +1,22 @@
 # Hostlinku OpenCode Starter
 
-Generate an OpenCode custom provider configuration from the model catalog available to your Hostlinku API key. One key selects one service mode: Economy, Performance, or Dedicated. The generator uses OpenCode's V1 config format, which is also supported by [OpenCode V2 compatibility](https://opencode.ai/docs/migrate-v1/#use-your-existing-configuration).
+Use Hostlinku in OpenCode with the models, token limits, and USD prices available to your API key. Each key is tied to Economy, Performance, or Dedicated.
 
-## Quick start
+## OpenCode 2 plugin
+
+In OpenCode **2.3.2**, install the [GitHub release](https://github.com/hostlinku/hostlinku-opencode-starter/releases/tag/v0.1.0):
+
+```sh
+opencode plugin add github:hostlinku/hostlinku-opencode-starter#v0.1.0
+```
+
+Open `/connect`, select **Hostlinku**, and enter your Hostlinku API key. You can also start OpenCode with `HOSTLINKU_API_KEY` in its environment. The plugin reloads the catalog when you connect or switch keys. If you already use a generated Hostlinku config, remove its `provider.hostlinku` entry before enabling the plugin. Other provider settings can stay in place.
+
+The plugin uses Chat Completions by default and reads the catalog over HTTPS from `api.hostlinku.com`. You can use `opencode models` to check the model list. If the catalog is temporarily unavailable, run `opencode reload` after service recovers.
+
+## Configuration generator for OpenCode 1
+
+The generator writes an OpenCode V1 provider configuration to stdout. The same configuration works using [OpenCode V2 compatibility](https://opencode.ai/docs/migrate-v1/#use-your-existing-configuration).
 
 1. Install [Node.js](https://nodejs.org/) 22 or newer and [OpenCode](https://opencode.ai/). Create an API key in the [Hostlinku Console](https://console.hostlinku.com/) for your preferred service mode.
 2. Set `HOSTLINKU_API_KEY` in your local environment. From this repository, run:
@@ -32,9 +46,10 @@ The example slug only works when it is available for your key. If you change you
 Run the local checks with no API key:
 
 ```sh
+npm ci
 node --test
 ```
 
 ## Bahasa Indonesia
 
-Atur `HOSTLINKU_API_KEY` di lingkungan lokal, lalu jalankan `node generate.mjs`. Gabungkan `provider.hostlinku` dari hasilnya ke `opencode.json`. Buka OpenCode dengan variabel yang sama dan pilih model Hostlinku. Daftar model dan harga mengikuti mode API key. Generator hanya membaca katalog dan tidak mengubah file OpenCode. Panduan lengkap ada di [dokumentasi Hostlinku](https://docs.hostlinku.com/integrations/opencode).
+Di OpenCode 2.3.2, pasang plugin dari GitHub lalu pilih **Hostlinku** di `/connect`. Daftar model dan harga diperbarui saat kamu mengganti key. Di OpenCode 1, atur `HOSTLINKU_API_KEY`, jalankan `node generate.mjs`, dan gabungkan `provider.hostlinku` ke `opencode.json`. Buka OpenCode dengan variabel yang sama, lalu pilih model Hostlinku. Panduan tambahan ada di [dokumentasi Hostlinku](https://docs.hostlinku.com/integrations/opencode).

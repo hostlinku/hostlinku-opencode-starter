@@ -1,0 +1,13 @@
+{
+  "name": "hostlinku-opencode-starter",
+  "version": "0.1.0",
+  "description": "Hostlinku provider plugin and configuration generator for OpenCode",
+  "type": "module",
+  "exports": "./index.js",
+  "files": ["index.js", "generate.mjs"],
+  "license": "MIT",
+  "repository": "github:hostlinku/hostlinku-opencode-starter",
+  "dependencies": {
+    "@opencode/plugin": "2.3.2"
+  }
+}
